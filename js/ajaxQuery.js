@@ -82,10 +82,12 @@
 	});
 
 	content.on('click', '.table-row', function (e){
+		e.preventDefault();
 		$(this).toggleClass("delete");
 	});
 
 	content.on('click', '#id_delCab_btn', function (e){
+		e.preventDefault();
 		var rows = $('.delete');
 		var deleteRows = [];
 		for (var i = 0; i < rows.length; i++) {
@@ -101,7 +103,26 @@
 	            	rows.remove();
 	            	alert('Кабинет(ы) удален(ы)!');
 	            }
-			});
+		});
 		
 	});
+
+	$('#vhod').on('click', function (e) {
+		e.preventDefault();
+		var login = $('#login').val();
+		var password = $('#password').val();
+
+		$.ajax({
+				type: "POST", 
+				async: false,
+	            url: "controller/controller.php/login", 
+	            data: {login:login, password:password},
+	            success: function(data) { 
+	            	//location.reload();
+	            	console.log(data);
+	            }
+		});
+	});
+
+
 });

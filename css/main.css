@@ -171,7 +171,7 @@ input{
 	height: 38px;
 	width: 211px;
 }
-input[type=button]{
+input[type=button] input:not(#vhod){
 	display: inline-block;
 	text-decoration: none;
 	outline: none;
@@ -184,7 +184,7 @@ input[type=button]{
 	background-image: linear-gradient(to top, #d7e4f1, #90b5d9);	
 	margin: 0 auto;
 }
-form{
+#form{
 	position: absolute;
 	top: 50%;
 	left: 50%;

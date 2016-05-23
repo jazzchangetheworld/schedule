@@ -36,6 +36,18 @@ class db_handler {
 		else return false;
 	}
 
+	public function getUser($login)	{
+		$stmt = $this->conn->prepare("SELECT * FROM `user` WHERE `login` = '$login'");
+		$result = $stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$stmt->close();
+
+		if ($result) return $result;
+		else return false;
+	}
+
 	
 }
 

@@ -52,6 +52,24 @@ ini_set('display_errors', 'On');
 		$db->setAnyDataDB("DELETE FROM `cabinet` WHERE `id_cabinet` IN (".implode(',',$delCabinets).")");
 	});
 
+	$app->post('/login', function() use ($app,$db) {
+		$login = $app->request->post('login');
+		$password = $app->request->post('password');
+		$result = $db->getUser($login);
+
+		if($result->num_rows > 0) {
+			//Получаем данные из таблицы
+			$row = $result->fetch_assoc();
+
+			if($password === $row['password']) {	
+				$_SESSION['user'] = true;
+				echo 'true';
+			} else
+				echo 'false1';
+		} else
+			echo 'false2';
+	});
+
 
 
 	$app->run();
