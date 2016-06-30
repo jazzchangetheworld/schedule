@@ -47,7 +47,12 @@
 				</ul>
 			</div>
 			<div class="content"></div>
-			<div class="footer"></div>
+			<div class="footer">
+				<div class="modal_window">
+					<div class='content_window'></div>
+		   	 		<input type="button" title="Закрыть" class="close" value="X"/>
+				</div>
+			</div>
 		</div>	
 	<?php
 		} else{
@@ -56,9 +61,9 @@
 			<!-- <div class="header"></div> -->
 			<div class="content">
 				<div id='form'> 
-					<input type="text" id='login' value="Логин" onfocus='if (this.value == "Логин") this.value="";'>
-					<input type="password" id='password' value="Пароль" onfocus='if (this.value == "Пароль") this.value="";'>
-					<input type="button" id='vhod' value="Ввойти">
+					<input type="text" id='login' value="" placeholder='Логин'>
+					<input type="password" id='password' value="" placeholder='Пароль'>
+					<input type="button" id='vhod' value="Войти">
 				</div> 
 			</div>
 			<div class="footer"></div>

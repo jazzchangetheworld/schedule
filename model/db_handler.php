@@ -13,27 +13,32 @@ class db_handler {
         $this->conn = $db->connect();
     }
 
-    //запросить все у заданной таблицы
-	public function getAllDataDB($name_table) {
-		$stmt = $this->conn->prepare("SELECT * FROM $name_table");
-	//	$stmt->bind_param("s", $name_table);
-		$stmt->execute();
-
-		$result = $stmt->get_result();
-		$stmt->close();
-		
-		if ($result) return $result;
-		else return false;
-	}
-
 	public function setAnyDataDB($request)	{
 		$stmt = $this->conn->prepare($request);
-		$result = $stmt->execute();
 
-		$stmt->close();
+		if ($stmt->execute()) {
+			$result = $stmt->get_result();
+			$stmt->close();
+			return $result;
+		} 
+		else{
+			$stmt->close();
+			return false;
+		} 
+	}
 
-		if ($result) return true;
-		else return false;
+	public function getInsertId($request){
+		$stmt = $this->conn->prepare($request);
+
+		if ($stmt->execute()){
+			$id = $stmt->insert_id;
+			$stmt->close();
+			return $id;
+		} 
+		else{
+			$stmt->close();
+			return false;
+		} 
 	}
 
 	public function getUser($login)	{
@@ -47,7 +52,6 @@ class db_handler {
 		if ($result) return $result;
 		else return false;
 	}
-
 	
 }
 
